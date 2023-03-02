@@ -63,9 +63,6 @@ int main(int argc,char** argv)
   //
 #ifdef G4MULTITHREADED
   G4MTRunManager* runManager = new G4MTRunManager;
-  if ( nThreads > 0 ) {
-    runManager->SetNumberOfThreads(nThreads);
-  }
 #else
   G4RunManager* runManager = new G4RunManager;
 #endif
@@ -73,7 +70,7 @@ int main(int argc,char** argv)
   // Set mandatory initialization classes
   //
   // Detector construction
-  auto detConstruction = new DetectorConstruction()
+  auto detConstruction = new DetectorConstruction();
   runManager->SetUserInitialization(detConstruction);
 
   // Physics list

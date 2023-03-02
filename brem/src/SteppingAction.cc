@@ -35,11 +35,16 @@
 #include "G4Event.hh"
 #include "G4RunManager.hh"
 #include "G4LogicalVolume.hh"
+#include "Analysis.hh"
+
+#include <iostream>
+#include <fstream>
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-SteppingAction::SteppingAction(EventAction* eventAction)
+SteppingAction::SteppingAction(const DetectorConstruction* detConstruction,EventAction* eventAction)
 : G4UserSteppingAction(),
+fDetConstruction(detConstruction),
   fEventAction(eventAction),
   fScoringVolume(0)
 {}
@@ -55,17 +60,19 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
 {
  G4double Energy01;
  using std::ofstream;
- ofstream outfile1("./data/中子E.txt");
+ ofstream outfile1("./data/gammaE.txt");
+
+ auto analysisManager=G4AnalysisManager::Instance();
  
- if((Step->GetTrack()->GetDefinition()->GetPDGEncoding()==22)//22 for gamma,11 for electron ,2112 for neutron,2212 for 
-     && Step->GetPostStepPoint()->GetPhysicalVolume() != NULL)//Step未超出计算边界
+ if((step->GetTrack()->GetDefinition()->GetPDGEncoding()==22)//22 for gamma,11 for electron ,2112 for neutron,2212 for 
+     && step->GetPostStepPoint()->GetPhysicalVolume() != NULL)//Step未超出计算边界
 	{
-        if(Step->GetPreStepPoint()->GetPhysicalVolume()->GetName() == "Shape3"//generated in front
-    	&& Step->GetPostStepPoint()->GetPhysicalVolume()->GetName()== "World"//out in the world 
-        && Step->GetTrack()->GetPosition0().z()>4.9)//Step的位置,边界z坐标为5
+        if(step->GetPreStepPoint()->GetPhysicalVolume()->GetName() == "Shape3"//generated in front
+    	&& step->GetPostStepPoint()->GetPhysicalVolume()->GetName()== "World"//out in the world 
+       /* && step->GetTrack()->GetPosition0().z()>4.9*/)//Step的位置,边界z坐标为5
             {
  
-                Energy01=(Step->GetTrack()->GetKineticEnergy());
+                Energy01=(step->GetTrack()->GetKineticEnergy());
 	            outfile1 << Energy01 << G4endl;
             }  
 	}
@@ -89,6 +96,10 @@ void SteppingAction::UserSteppingAction(const G4Step* step)
   G4double edepStep = step->GetTotalEnergyDeposit();
   fEventAction->AddEdep(edepStep);  
 
+  analysisManager->FillNtupleDColumn(0, Energy01);
+
+
+  analysisManager->FillH1(0, Energy01);
 
 }
 

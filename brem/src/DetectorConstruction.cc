@@ -48,17 +48,17 @@
 DetectorConstruction::DetectorConstruction()
 : G4VUserDetectorConstruction(),
   fScoringVolume(0)
-{fMessenger = new DetectorMessenger(this); }
+{ }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 DetectorConstruction::~DetectorConstruction()
-{ delete fMessenger;}
+{ }
 
 void DetectorConstruction::SetConverterThickness(G4double thickness)
 {
   // Get the original solid shape of the logical volume
-  if (fLogicTarget) G4VSolid* originalSolid = fLogicConverter->GetSolid();
+  if (fLogicConverter) G4VSolid* originalSolid = fLogicConverter->GetSolid();
   // Create a new solid shape with the desired geometry
   G4double shape3_rin =  0.*cm;
   G4double shape3_rout =  2.*cm;
@@ -128,7 +128,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
   fScoringVolume = fLogicConverter ;
   //shape 3 means a converter
 
-  G4Material* fConverterMaterial = nist->FindOrBuildMaterial("G4_Ta");
+  fConverterMaterial = nist->FindOrBuildMaterial("G4_Ta");
   G4ThreeVector pos3 = G4ThreeVector(0, 0, 0*cm);
 
   G4double shape3_rin =  0.*cm;
@@ -139,7 +139,7 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     new G4Tubs("Shape3", 
     shape3_rin, shape3_rout,0.5*shape3_hz, shape3_phimin, shape3_phimax);
                       
-  G4LogicalVolume* fLogicConverter  =                         
+    fLogicConverter  =                         
     new G4LogicalVolume(solidShape3,         //its solid
                         fConverterMaterial,          //its material
                         "Shape3");           //its name

@@ -2,7 +2,7 @@
 #----------------------------------------------------------------------------
 # Setup the project
 cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
-project()
+project(Z1)
 
 #----------------------------------------------------------------------------
 # Find Geant4 package, activating all available UI and Vis drivers by default
@@ -39,7 +39,7 @@ target_link_libraries(example ${Geant4_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
-# build . This is so that we can run the executable directly because it
+# build Z1. This is so that we can run the executable directly because it
 # relies on these scripts being in the current working directory.
 #
 set(EXAMPLE_SCRIPTS
@@ -63,7 +63,7 @@ endforeach()
 # For internal Geant4 use - but has no effect if you build this
 # example standalone
 #
-add_custom_target( DEPENDS example)
+add_custom_target(Z1 DEPENDS example)
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX

@@ -1,16 +1,25 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/exampleZ1.dir/exampleZ1.cc.o"
-  "CMakeFiles/exampleZ1.dir/src/Z1ActionInitialization.cc.o"
-  "CMakeFiles/exampleZ1.dir/src/Z1DetectorConstruction.cc.o"
-  "CMakeFiles/exampleZ1.dir/src/Z1EventAction.cc.o"
-  "CMakeFiles/exampleZ1.dir/src/Z1PrimaryGeneratorAction.cc.o"
-  "CMakeFiles/exampleZ1.dir/src/Z1RunAction.cc.o"
-  "CMakeFiles/exampleZ1.dir/src/Z1SteppingAction.cc.o"
-  "exampleZ1.pdb"
-  "exampleZ1"
+  "CMakeFiles/example.dir/example.cc.o"
+  "CMakeFiles/example.dir/example.cc.o.d"
+  "CMakeFiles/example.dir/src/ActionInitialization.cc.o"
+  "CMakeFiles/example.dir/src/ActionInitialization.cc.o.d"
+  "CMakeFiles/example.dir/src/DetectorConstruction.cc.o"
+  "CMakeFiles/example.dir/src/DetectorConstruction.cc.o.d"
+  "CMakeFiles/example.dir/src/DetectorMessenger.cc.o"
+  "CMakeFiles/example.dir/src/DetectorMessenger.cc.o.d"
+  "CMakeFiles/example.dir/src/EventAction.cc.o"
+  "CMakeFiles/example.dir/src/EventAction.cc.o.d"
+  "CMakeFiles/example.dir/src/PrimaryGeneratorAction.cc.o"
+  "CMakeFiles/example.dir/src/PrimaryGeneratorAction.cc.o.d"
+  "CMakeFiles/example.dir/src/RunAction.cc.o"
+  "CMakeFiles/example.dir/src/RunAction.cc.o.d"
+  "CMakeFiles/example.dir/src/SteppingAction.cc.o"
+  "CMakeFiles/example.dir/src/SteppingAction.cc.o.d"
+  "example"
+  "example.pdb"
 )
 
 # Per-language clean rules from dependency scanning.
 foreach(lang CXX)
-  include(CMakeFiles/exampleZ1.dir/cmake_clean_${lang}.cmake OPTIONAL)
+  include(CMakeFiles/example.dir/cmake_clean_${lang}.cmake OPTIONAL)
 endforeach()

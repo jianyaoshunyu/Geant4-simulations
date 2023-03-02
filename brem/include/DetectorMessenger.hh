@@ -38,7 +38,7 @@ class DetectorMessenger: public G4UImessenger
  //   G4UIcmdWithAString*    fTargMatCmd = nullptr;
  //   G4UIcmdWithAString*    fChamMatCmd = nullptr;
 
-    G4UIcmdWithADouble* fCvtThickCmd = nullptr;
+    G4UIcmdWithADoubleAndUnit* fCvtThickCmd = nullptr;
 };
 
 
